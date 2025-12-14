@@ -6,7 +6,7 @@
     <title>VWS REcords</title>
     <style>
         :root {
-            /* Theme Colors */
+            /* --- THEME CONFIGURATION --- */
             --primary: #8B0000;      /* Dark Red */
             --secondary: #DAA520;    /* Goldenrod */
             --bg-color: #f8f9fa;
@@ -23,7 +23,7 @@
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
-            padding-top: var(--nav-height); /* Space for fixed navbar */
+            padding-top: var(--nav-height);
             color: var(--text-dark);
             -webkit-tap-highlight-color: transparent;
             display: flex;
@@ -33,102 +33,54 @@
 
         /* --- NAVBAR --- */
         .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: var(--nav-height);
-            background: var(--primary);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
+            background: var(--primary); color: var(--white);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000;
         }
-
-        .nav-brand {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--secondary);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
+        .nav-brand { font-size: 1.2rem; font-weight: 800; color: var(--secondary); letter-spacing: 1px; text-transform: uppercase; }
         .nav-logout {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid var(--secondary);
-            color: var(--secondary);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
+            background: rgba(255,255,255,0.15); border: 1px solid var(--secondary); color: var(--secondary);
+            padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; cursor: pointer;
+            font-weight: bold; transition: 0.2s;
         }
         .nav-logout:active { transform: scale(0.95); background: rgba(255,255,255,0.3); }
 
-        /* --- CONTAINER --- */
-        .container {
-            width: 100%; 
-            margin: 0 auto; 
-            flex: 1; /* Pushes footer down */
-            position: relative;
-        }
-
-        /* Responsive Container */
+        /* --- LAYOUT --- */
+        .container { width: 100%; margin: 0 auto; flex: 1; position: relative; }
+        
+        /* Desktop/Tablet Mode */
         @media (min-width: 600px) { 
             .container { max-width: 600px; background: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; min-height: calc(100vh - var(--nav-height)); }
             body { background: #e0e0e0; } 
         }
 
-        /* --- LOGIN --- */
+        /* --- LOGIN SCREEN --- */
         #login-view { 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            min-height: calc(90vh - var(--nav-height)); 
-            padding: 20px; 
-            text-align: center; 
+            display: flex; flex-direction: column; justify-content: center; 
+            min-height: calc(85vh - var(--nav-height)); padding: 20px; text-align: center; 
         }
         .login-card { 
-            background: white; 
-            padding: 40px 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.15); 
-            border-top: 5px solid var(--secondary); 
+            background: white; padding: 40px 30px; border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.15); border-top: 5px solid var(--secondary); 
         }
         .login-card h2 { color: var(--primary); margin: 0 0 10px 0; }
-        
-        /* --- DASHBOARD HEADER (Sub-header) --- */
+
+        /* --- DASHBOARD HEADER --- */
         .dash-info-bar {
-            background: white;
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: white; padding: 15px 20px; border-bottom: 1px solid #eee;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .dash-bike-number {
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: var(--text-dark);
-            letter-spacing: 1px;
-        }
+        .dash-bike-number { font-size: 1.2rem; font-weight: 900; color: var(--text-dark); letter-spacing: 1px; }
         .dash-label { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; display: block;}
 
         /* --- FOOTER --- */
         .footer {
-            background: #2d3436;
-            color: #b2bec3;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.8rem;
-            border-top: 4px solid var(--secondary);
-            margin-top: auto; /* Pushes to bottom */
+            background: #2d3436; color: #b2bec3; text-align: center; padding: 20px;
+            font-size: 0.8rem; border-top: 4px solid var(--secondary); margin-top: auto;
         }
-        .footer a { color: var(--secondary); text-decoration: none; }
 
-        /* --- ACTIONS --- */
+        /* --- ACTION BUTTONS --- */
         .action-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; }
         .action-card {
             padding: 20px 10px; border-radius: 16px; text-align: center; font-weight: 700;
@@ -139,7 +91,7 @@
         .ac-service { color: var(--primary); border: 2px solid var(--primary); }
         .ac-fuel { color: #b8860b; border: 2px solid var(--secondary); }
 
-        /* --- LIST --- */
+        /* --- HISTORY LIST --- */
         .list-header { padding: 10px 25px; font-weight: 700; color: var(--text-light); font-size: 0.85rem; text-transform: uppercase; }
         .record-list { padding: 0 15px 20px 15px; }
         .record-item {
@@ -154,7 +106,7 @@
         .rec-date { font-size: 0.8rem; color: #999; }
         .rec-cost { font-weight: 700; font-size: 1.2rem; white-space: nowrap;}
 
-        /* --- FORM ELEMENTS --- */
+        /* --- INPUTS & BUTTONS --- */
         input {
             width: 100%; padding: 14px; margin: 8px 0; border: 2px solid #eee; border-radius: 12px;
             box-sizing: border-box; outline: none; font-size: 16px; background: #fafafa;
@@ -164,7 +116,7 @@
 
         .btn-main { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 15px; }
 
-        /* --- MODALS --- */
+        /* --- MODALS (POPUP) --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay);
             display: flex; justify-content: center; align-items: flex-end; z-index: 2000;
@@ -178,6 +130,7 @@
         }
         .modal-overlay.active .modal-content { transform: translateY(0); }
         
+        /* Modal on Desktop */
         @media(min-width: 600px) {
             .modal-overlay { align-items: center; padding: 20px; box-sizing: border-box;}
             .modal-content { border-radius: 20px; width: 100%; max-width: 500px; transform: scale(0.9); opacity: 0; }
@@ -188,25 +141,25 @@
         .modal-title { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
         .close-btn { background: #f0f0f0; border: none; width: 36px; height: 36px; border-radius: 50%; font-weight: bold; font-size: 1.2rem; cursor: pointer; }
 
-        /* --- DETAIL VIEW --- */
+        /* --- DETAIL VIEW STYLES --- */
         .detail-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; align-items: center; }
         .detail-label { color: var(--text-light); font-size: 0.9rem; }
         .detail-value { font-weight: 600; color: var(--text-dark); text-align: right; max-width: 65%; }
         .big-cost { font-size: 2.2rem; color: var(--primary); font-weight: 800; text-align: center; margin: 20px 0; }
         
-        /* Mechanic Section */
+        /* Mechanic Box */
         .mech-box { background: #fff8e1; padding: 15px; border-radius: 10px; margin-top: 15px; border: 1px solid var(--secondary); }
         .mech-title { color: var(--primary); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 5px; }
 
+        /* --- UTILITIES --- */
         .hidden { display: none !important; }
         
-        /* Toast */
+        /* Toast Notifications */
         #toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 3000; width: 90%; max-width: 400px; }
         .toast { background: #333; color: white; padding: 12px 20px; border-radius: 50px; text-align: center; margin-bottom: 10px; opacity: 0; transform: translateY(-20px); transition: 0.3s; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         .toast.show { opacity: 1; transform: translateY(0); }
         .toast.error { background: var(--primary); }
         .toast.success { background: var(--secondary); color: black; font-weight: bold; }
-
     </style>
 </head>
 <body>
@@ -223,12 +176,12 @@
     <div id="login-view">
         <div class="login-card">
             <h2>Welcome</h2>
-            <p style="color:#666; margin-bottom:20px;">Enter Bike Number to Access Records</p>
+            <p style="color:#666; margin-bottom:20px;">Enter Bike Number</p>
             
             <input 
                 type="text" 
                 id="bikeInput" 
-                placeholder="ENTER BIKE NUMBER" 
+                placeholder="TN01AB1234" 
                 oninput="this.value = this.value.toUpperCase()"
                 style="text-align: center; letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">
             
@@ -329,126 +282,58 @@
 </div>
 
 <script>
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx7PL5zBpSXuvmgX140xmEf4LaAa8Z4fnIgn8iFtR9aDUtPpVwVL5Sz_iEH6fmbDI-k/exec';
+    // ******************************************************
+    // PASTE YOUR GOOGLE SCRIPT URL INSIDE THE QUOTES BELOW
+    const SCRIPT_URL = 'YOUR_SCRIPT_URL_HERE'; 
+    // ******************************************************
     
-    // Internal Separator for packing Mechanic info
-    const SEP = '|||'; 
+    const SEP = '|||'; // Separator for packed mechanic data
     let currentBike = "";
     let globalData = []; 
 
-    function openInputModal(type) {
-        const title = document.getElementById('inputModalTitle');
-        const entryType = document.getElementById('entryType');
-        
-        // Reset Inputs
-        document.getElementById('inpDate').valueAsDate = new Date();
-        document.getElementById('inpOdm').value = '';
-        document.getElementById('inpCost').value = '';
-        document.getElementById('inpDesc').value = '';
-        document.getElementById('inpAir').checked = false;
-        
-        // Reset Mechanic Inputs
-        document.getElementById('inpMechName').value = '';
-        document.getElementById('inpShopName').value = '';
-        document.getElementById('inpMechPhone').value = '';
+    // --- AUTO LOGIN & QR CODE HANDLER ---
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const bikeParam = urlParams.get('bike');
+        const actionParam = urlParams.get('action');
 
-        entryType.value = type;
-        title.innerText = type === 'Service' ? 'Add Service' : 'Add Fuel';
-        title.style.color = type === 'Service' ? 'var(--primary)' : '#b8860b';
+        if (bikeParam) {
+            // Auto-fill and Login
+            document.getElementById('bikeInput').value = bikeParam;
+            login();
 
-        if(type === 'Service') {
-            document.getElementById('field-service').classList.remove('hidden');
-            document.getElementById('field-fuel').classList.add('hidden');
-        } else {
-            document.getElementById('field-service').classList.add('hidden');
-            document.getElementById('field-fuel').classList.remove('hidden');
-        }
-        document.getElementById('inputModal').classList.add('active');
-    }
-
-    function openViewModal(index) {
-        const row = globalData[index];
-        const type = row[0];
-        let dateStr = row[1];
-        try { dateStr = new Date(row[1]).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); } catch(e){}
-        
-        const content = document.getElementById('viewContent');
-        let detailsHtml = "";
-        
-        // --- DATA UNPACKING ---
-        if (type === 'Service') {
-            const rawDetails = row[3] || "";
-            let desc = rawDetails;
-            let mech = "N/A";
-            let shop = "N/A";
-            let phone = "";
-
-            // Check if we have packed mechanic data
-            if(rawDetails.includes(SEP)) {
-                const parts = rawDetails.split(SEP);
-                desc = parts[0];
-                mech = parts[1] || "N/A";
-                shop = parts[2] || "N/A";
-                phone = parts[3] || "";
+            // Auto-open Popup if requested
+            if (actionParam === 'service') {
+                setTimeout(() => openInputModal('Service'), 800);
             }
-
-            detailsHtml = `
-                <div class="detail-row"><span class="detail-label">Work Done</span> <span class="detail-value">${desc}</span></div>
-                
-                <div class="mech-box">
-                    <div class="mech-title">Mechanic & Shop Info</div>
-                    <div class="detail-row"><span class="detail-label">Mechanic</span> <span class="detail-value">${mech}</span></div>
-                    <div class="detail-row"><span class="detail-label">Shop Name</span> <span class="detail-value">${shop}</span></div>
-                    <div class="detail-row">
-                        <span class="detail-label">Phone</span> 
-                        <span class="detail-value">
-                            ${phone ? `<a href="tel:${phone}" style="color:var(--primary); text-decoration:none;">📞 ${phone}</a>` : 'N/A'}
-                        </span>
-                    </div>
-                </div>
-            `;
-        } else {
-            // Fuel Logic
-            const desc = row[3]; 
-            const isAir = desc.toLowerCase().includes('checked') || desc.toLowerCase().includes('yes') ? "✅ Checked" : "❌ Not Checked";
-            detailsHtml = `<div class="detail-row"><span class="detail-label">Air Status</span> <span class="detail-value" style="color:var(--secondary)">${isAir}</span></div>`;
+            if (actionParam === 'fuel') {
+                setTimeout(() => openInputModal('Fuel'), 800);
+            }
         }
+    };
 
-        content.innerHTML = `
-            <div style="text-align:center; margin-bottom:10px;">
-                <span style="background:${type==='Service'?'var(--primary)':'var(--secondary)'}; color:${type==='Service'?'white':'black'}; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.8rem; text-transform:uppercase;">${type}</span>
-            </div>
-            <div class="big-cost">₹${row[4]}</div>
-            <div class="detail-row"><span class="detail-label">Date</span> <span class="detail-value">${dateStr}</span></div>
-            <div class="detail-row"><span class="detail-label">Odometer</span> <span class="detail-value">${row[2]} km</span></div>
-            ${detailsHtml}
-        `;
-        document.getElementById('viewModal').classList.add('active');
-    }
-
-    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-
-    // --- MAIN APP LOGIC ---
-
+    // --- UI VIEW SWITCHING ---
     function login() {
         const input = document.getElementById('bikeInput').value.trim();
         if(!input) return showToast("Enter Bike Number", "error");
         
         currentBike = input.toUpperCase().replace(/\s/g, '');
         
-        // SWITCH UI
         document.getElementById('login-view').classList.add('hidden');
         document.getElementById('dashboard-view').classList.remove('hidden');
         document.getElementById('dashTitle').innerText = currentBike;
-        
-        // SHOW LOGOUT BUTTON IN NAVBAR
         document.getElementById('navLogoutBtn').classList.remove('hidden');
         
         fetchRecords();
     }
 
-    function logout() { location.reload(); }
+    function logout() { 
+        // Clear params to prevent auto-relogin loops
+        window.history.pushState({}, document.title, window.location.pathname);
+        location.reload(); 
+    }
 
+    // --- DATA SYNCING ---
     function fetchRecords() {
         document.getElementById('loader').classList.remove('hidden');
         document.getElementById('recordList').innerHTML = "";
@@ -481,7 +366,7 @@
             let dateStr = row[1];
             try { dateStr = new Date(row[1]).toLocaleDateString(); } catch(e){}
 
-            // LIST SUMMARY LOGIC
+            // LIST SUMMARY (Unpack if needed)
             let summary = "";
             if(type === 'Service') {
                 const raw = row[3] || "";
@@ -507,6 +392,7 @@
         });
     }
 
+    // --- SUBMIT LOGIC ---
     function submitForm() {
         const type = document.getElementById('entryType').value;
         const payload = {
@@ -525,9 +411,8 @@
             const shop = document.getElementById('inpShopName').value || "";
             const phone = document.getElementById('inpMechPhone').value || "";
             
-            // PACK DATA: Description ||| Mech ||| Shop ||| Phone
+            // Pack Data into one string
             payload.details = `${desc}${SEP}${mech}${SEP}${shop}${SEP}${phone}`;
-            
         } else {
             payload.airCheck = document.getElementById('inpAir').checked ? "Checked" : "No";
         }
@@ -549,16 +434,90 @@
         }).catch(() => showToast("Save Failed", "error"));
     }
 
+    // --- MODAL & HELPERS ---
+    function openInputModal(type) {
+        // Reset Inputs
+        document.getElementById('inpDate').valueAsDate = new Date();
+        document.getElementById('inpOdm').value = '';
+        document.getElementById('inpCost').value = '';
+        document.getElementById('inpDesc').value = '';
+        document.getElementById('inpAir').checked = false;
+        document.getElementById('inpMechName').value = '';
+        document.getElementById('inpShopName').value = '';
+        document.getElementById('inpMechPhone').value = '';
+
+        // Configure Modal
+        document.getElementById('entryType').value = type;
+        const title = document.getElementById('inputModalTitle');
+        title.innerText = type === 'Service' ? 'Add Service' : 'Add Fuel';
+        title.style.color = type === 'Service' ? 'var(--primary)' : '#b8860b';
+
+        // Toggle Service/Fuel Fields
+        if(type === 'Service') {
+            document.getElementById('field-service').classList.remove('hidden');
+            document.getElementById('field-fuel').classList.add('hidden');
+        } else {
+            document.getElementById('field-service').classList.add('hidden');
+            document.getElementById('field-fuel').classList.remove('hidden');
+        }
+        document.getElementById('inputModal').classList.add('active');
+    }
+
+    function openViewModal(index) {
+        const row = globalData[index];
+        const type = row[0];
+        let dateStr = "";
+        try { dateStr = new Date(row[1]).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); } catch(e){}
+        
+        let detailsHtml = "";
+        
+        if (type === 'Service') {
+            const rawDetails = row[3] || "";
+            let desc = rawDetails;
+            let mech = "N/A", shop = "N/A", phone = "";
+
+            if(rawDetails.includes(SEP)) {
+                const parts = rawDetails.split(SEP);
+                desc = parts[0];
+                mech = parts[1] || "N/A";
+                shop = parts[2] || "N/A";
+                phone = parts[3] || "";
+            }
+
+            detailsHtml = `
+                <div class="detail-row"><span class="detail-label">Work Done</span> <span class="detail-value">${desc}</span></div>
+                <div class="mech-box">
+                    <div class="mech-title">Mechanic & Shop Info</div>
+                    <div class="detail-row"><span class="detail-label">Mechanic</span> <span class="detail-value">${mech}</span></div>
+                    <div class="detail-row"><span class="detail-label">Shop Name</span> <span class="detail-value">${shop}</span></div>
+                    <div class="detail-row"><span class="detail-label">Phone</span> <span class="detail-value">${phone ? `<a href="tel:${phone}" style="color:var(--primary); text-decoration:none;">📞 ${phone}</a>` : 'N/A'}</span></div>
+                </div>`;
+        } else {
+            const isAir = row[3].toLowerCase().includes('checked') || row[3].toLowerCase().includes('yes') ? "✅ Checked" : "❌ Not Checked";
+            detailsHtml = `<div class="detail-row"><span class="detail-label">Air Status</span> <span class="detail-value" style="color:var(--secondary)">${isAir}</span></div>`;
+        }
+
+        document.getElementById('viewContent').innerHTML = `
+            <div style="text-align:center; margin-bottom:10px;">
+                <span style="background:${type==='Service'?'var(--primary)':'var(--secondary)'}; color:${type==='Service'?'white':'black'}; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.8rem; text-transform:uppercase;">${type}</span>
+            </div>
+            <div class="big-cost">₹${row[4]}</div>
+            <div class="detail-row"><span class="detail-label">Date</span> <span class="detail-value">${dateStr}</span></div>
+            <div class="detail-row"><span class="detail-label">Odometer</span> <span class="detail-value">${row[2]} km</span></div>
+            ${detailsHtml}
+        `;
+        document.getElementById('viewModal').classList.add('active');
+    }
+
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
     function showToast(msg, type) {
         const box = document.createElement('div');
         box.className = `toast ${type}`;
         box.innerText = msg;
         document.getElementById('toast-container').appendChild(box);
         requestAnimationFrame(() => box.classList.add('show'));
-        setTimeout(() => {
-            box.classList.remove('show');
-            setTimeout(() => box.remove(), 300);
-        }, 3000);
+        setTimeout(() => { box.classList.remove('show'); setTimeout(() => box.remove(), 300); }, 3000);
     }
 </script>
 
