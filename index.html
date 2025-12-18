@@ -2,525 +2,530 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="theme-color" content="#0056b3">
+
+    <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-9qVQpARFpnwkAI7FQoAMKmf2hoY4jIOt8Q&s">
+    <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-9qVQpARFpnwkAI7FQoAMKmf2hoY4jIOt8Q&s">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>VWS REcords</title>
     <style>
         :root {
-            /* --- THEME CONFIGURATION --- */
-            --primary: #8B0000;      /* Dark Red */
-            --secondary: #DAA520;    /* Goldenrod */
-            --bg-color: #f8f9fa;
-            --text-dark: #2d3436;
-            --text-light: #636e72;
-            --white: #ffffff;
-            --overlay: rgba(0, 0, 0, 0.6);
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --bg-body: #0f0f0f;
+            --bg-panel: #181818;
+            --primary: #ff4757;      /* Neon Red */
+            --secondary: #ffa502;    /* Neon Gold */
+            --text-main: #ffffff;
+            --text-sub: #7f8c8d;
+            --border: #333;
             --nav-height: 60px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-            padding-top: var(--nav-height);
-            color: var(--text-dark);
-            -webkit-tap-highlight-color: transparent;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0; padding: 0;
+            height: 100vh;
+            display: flex; flex-direction: column;
+            overflow: hidden; 
         }
 
         /* --- NAVBAR --- */
         .navbar {
-            position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
-            background: var(--primary); color: var(--white);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000;
+            height: var(--nav-height); background: #000; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
+            flex-shrink: 0; z-index: 100;
         }
-        .nav-brand { font-size: 1.2rem; font-weight: 800; color: var(--secondary); letter-spacing: 1px; text-transform: uppercase; }
-        .nav-logout {
-            background: rgba(255,255,255,0.15); border: 1px solid var(--secondary); color: var(--secondary);
-            padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; cursor: pointer;
-            font-weight: bold; transition: 0.2s;
-        }
-        .nav-logout:active { transform: scale(0.95); background: rgba(255,255,255,0.3); }
-
-        /* --- LAYOUT --- */
-        .container { width: 100%; margin: 0 auto; flex: 1; position: relative; }
-        
-        /* Desktop/Tablet Mode */
-        @media (min-width: 600px) { 
-            .container { max-width: 600px; background: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; min-height: calc(100vh - var(--nav-height)); }
-            body { background: #e0e0e0; } 
-        }
+        .brand { font-size: 1.2rem; font-weight: 900; color: var(--primary); letter-spacing: 2px; }
+        .nav-info { display: flex; align-items: center; font-size: 0.9rem; color: var(--text-sub); }
 
         /* --- LOGIN SCREEN --- */
-        #login-view { 
-            display: flex; flex-direction: column; justify-content: center; 
-            min-height: calc(85vh - var(--nav-height)); padding: 20px; text-align: center; 
+        #login-view {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://pop.h-cdn.co/assets/16/37/480x270/hd-aspect-1473707349-corserbmw.GIF');
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            z-index: 5000; display: flex; align-items: center; justify-content: center;
         }
-        .login-card { 
-            background: white; padding: 40px 30px; border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.15); border-top: 5px solid var(--secondary); 
-        }
-        .login-card h2 { color: var(--primary); margin: 0 0 10px 0; }
-
-        /* --- DASHBOARD HEADER --- */
-        .dash-info-bar {
-            background: white; padding: 15px 20px; border-bottom: 1px solid #eee;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .dash-bike-number { font-size: 1.2rem; font-weight: 900; color: var(--text-dark); letter-spacing: 1px; }
-        .dash-label { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; display: block;}
-
-        /* --- FOOTER --- */
-        .footer {
-            background: #2d3436; color: #b2bec3; text-align: center; padding: 20px;
-            font-size: 0.8rem; border-top: 4px solid var(--secondary); margin-top: auto;
+        .login-card {
+            background: rgba(24, 24, 24, 0.95); padding: 30px; border-radius: 15px; border: 1px solid var(--primary);
+            width: 90%; max-width: 400px; text-align: center; box-shadow: 0 0 20px rgba(255, 71, 87, 0.2); backdrop-filter: blur(5px);
         }
 
-        /* --- ACTION BUTTONS --- */
-        .action-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; }
-        .action-card {
-            padding: 20px 10px; border-radius: 16px; text-align: center; font-weight: 700;
-            cursor: pointer; box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; gap: 8px;
-            background: white;
+        /* --- GEAR LOADER --- */
+        .gear-container { position: relative; width: 60px; height: 60px; margin: 20px auto; }
+        .gear { position: absolute; border-radius: 50%; border: 4px dashed; box-sizing: border-box; }
+        .gear-outer { top: 0; left: 0; width: 100%; height: 100%; border-color: var(--primary); animation: spin 4s linear infinite; }
+        .gear-inner { top: 15px; left: 15px; width: 30px; height: 30px; border-color: var(--secondary); border-style: dotted; animation: spin-rev 2s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spin-rev { 100% { transform: rotate(-360deg); } }
+
+        /* --- MAIN LAYOUT (DESKTOP) --- */
+        .main-layout { display: flex; flex: 1; height: calc(100vh - var(--nav-height) - 40px); overflow: hidden; }
+
+        .panel-left { width: 30%; background: var(--bg-body); border-right: 1px solid var(--border); padding: 20px; display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+        .panel-mid { width: 40%; background: var(--bg-panel); border-right: 1px solid var(--border); padding: 30px; overflow-y: auto; position: relative; }
+        .panel-right { width: 30%; background: #111; padding: 20px; overflow-y: auto; }
+
+        /* --- MOBILE LAYOUT OVERRIDES --- */
+        @media (max-width: 1024px) {
+            .main-layout { display: block; height: auto; overflow-y: auto; padding-bottom: 90px; /* Fixed: Padding for Bottom Nav */ }
+            .panel-left, .panel-right, .system-footer { display: none !important; } 
+            .panel-mid { width: 100%; border: none; padding: 20px; display: none; } 
+            .mobile-dash { display: block; padding: 20px; }
         }
-        .action-card:active { transform: scale(0.96); }
-        .ac-service { color: var(--primary); border: 2px solid var(--primary); }
-        .ac-fuel { color: #b8860b; border: 2px solid var(--secondary); }
-
-        /* --- HISTORY LIST --- */
-        .list-header { padding: 10px 25px; font-weight: 700; color: var(--text-light); font-size: 0.85rem; text-transform: uppercase; }
-        .record-list { padding: 0 15px 20px 15px; }
-        .record-item {
-            background: white; margin-bottom: 12px; padding: 16px; border-radius: 12px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: var(--shadow); border-left: 6px solid #ccc; cursor: pointer; position: relative;
+        @media (min-width: 1025px) {
+            .mobile-dash, .bottom-nav { display: none !important; }
         }
-        .record-item::after { content: '›'; font-size: 1.5rem; color: #ddd; margin-left: 10px; }
-        .rec-info { display: flex; flex-direction: column; flex-grow: 1; }
-        .rec-tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; display: inline-block; padding: 2px 6px; border-radius: 4px; width: fit-content;}
-        .rec-main-text { font-size: 1rem; font-weight: 600; color: var(--text-dark); margin-top: 2px; }
-        .rec-date { font-size: 0.8rem; color: #999; }
-        .rec-cost { font-weight: 700; font-size: 1.2rem; white-space: nowrap;}
 
-        /* --- INPUTS & BUTTONS --- */
-        input {
-            width: 100%; padding: 14px; margin: 8px 0; border: 2px solid #eee; border-radius: 12px;
-            box-sizing: border-box; outline: none; font-size: 16px; background: #fafafa;
+        /* --- COMPONENTS --- */
+        .sys-btn {
+            padding: 30px; border-radius: 15px; border: 1px solid var(--border);
+            background: linear-gradient(145deg, #1e1e1e, #141414); cursor: pointer;
+            transition: 0.3s; text-align: left; display: flex; align-items: center; gap: 20px;
         }
-        input:focus { border-color: var(--secondary); background: white; }
-        label { font-size: 0.8rem; font-weight: bold; color: var(--text-light); margin-left: 5px; margin-top: 10px; display: block; }
+        .sys-btn:hover { border-color: var(--primary); transform: translateX(10px); }
+        .sys-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .sys-icon { font-size: 2.5rem; }
 
-        .btn-main { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 15px; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; color: var(--text-sub); margin-bottom: 8px; font-size: 0.9rem; font-weight: bold; }
+        input, textarea { 
+            width: 100%; background: #222; border: 1px solid var(--border); color: white; 
+            padding: 12px; border-radius: 8px; outline: none; box-sizing: border-box;
+        }
+        input:focus, textarea:focus { border-color: var(--secondary); }
+        .btn-save { width: 100%; padding: 15px; background: var(--secondary); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: black; margin-top: 10px; }
 
-        /* --- MODALS (POPUP) --- */
+        .hist-item {
+            background: #1a1a1a; padding: 15px; margin-bottom: 10px; border-radius: 8px;
+            border-left: 3px solid #555; display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; transition: 0.2s;
+        }
+        .hist-item:hover { background: #252525; }
+        .hist-item.Service { border-left-color: var(--primary); }
+        .hist-item.Fuel { border-left-color: var(--secondary); }
+        
+        .system-footer {
+            height: 40px; background: #000; border-top: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #555;
+            position: fixed; bottom: 0; width: 100%; z-index: 100;
+        }
+
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
+            background: #111; border-top: 1px solid var(--border);
+            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
+        }
+        .nav-item {
+            background: none; border: none; color: #666; font-size: 0.7rem; 
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+        }
+        .nav-item.active { color: var(--primary); }
+        .nav-item span { font-size: 1.5rem; }
+
+        /* --- MODALS --- */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay);
-            display: flex; justify-content: center; align-items: flex-end; z-index: 2000;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9);
+            z-index: 2000; display: none; align-items: flex-end; justify-content: center;
         }
-        .modal-overlay.active { opacity: 1; pointer-events: all; }
-        .modal-content {
-            background: white; width: 100%; max-width: 600px; border-radius: 24px 24px 0 0; padding: 30px;
-            transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-            max-height: 90vh; overflow-y: auto;
+        .modal-overlay.active { display: flex; }
+        .modal-sheet {
+            background: #1e1e1e; width: 100%; max-height: 90vh; border-radius: 20px 20px 0 0;
+            padding: 25px; overflow-y: auto; animation: slideUp 0.3s;
         }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-        
-        /* Modal on Desktop */
-        @media(min-width: 600px) {
-            .modal-overlay { align-items: center; padding: 20px; box-sizing: border-box;}
-            .modal-content { border-radius: 20px; width: 100%; max-width: 500px; transform: scale(0.9); opacity: 0; }
-            .modal-overlay.active .modal-content { transform: scale(1); opacity: 1; }
+        @media (min-width: 1025px) {
+            .modal-overlay { align-items: center; } 
+            .modal-sheet { max-width: 500px; border-radius: 20px; animation: fadeIn 0.3s; }
         }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .modal-title { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
-        .close-btn { background: #f0f0f0; border: none; width: 36px; height: 36px; border-radius: 50%; font-weight: bold; font-size: 1.2rem; cursor: pointer; }
+        /* VIEW MODE STYLES */
+        .view-card { background:#222; border:1px solid #333; padding:20px; border-radius:10px; margin-top:10px; }
+        .view-row { display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #333; padding-bottom:10px; }
+        .view-label { color:#888; }
+        .view-val { font-weight:bold; color:white; }
 
-        /* --- DETAIL VIEW STYLES --- */
-        .detail-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; align-items: center; }
-        .detail-label { color: var(--text-light); font-size: 0.9rem; }
-        .detail-value { font-weight: 600; color: var(--text-dark); text-align: right; max-width: 65%; }
-        .big-cost { font-size: 2.2rem; color: var(--primary); font-weight: 800; text-align: center; margin: 20px 0; }
-        
-        /* Mechanic Box */
-        .mech-box { background: #fff8e1; padding: 15px; border-radius: 10px; margin-top: 15px; border: 1px solid var(--secondary); }
-        .mech-title { color: var(--primary); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 5px; }
-
-        /* --- UTILITIES --- */
         .hidden { display: none !important; }
+        .tab-btn { padding: 10px; background: #222; border: 1px solid #333; color: #888; flex: 1; cursor: pointer; }
+        .tab-btn.active { background: var(--primary); color: white; }
         
-        /* Toast Notifications */
-        #toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 3000; width: 90%; max-width: 400px; }
-        .toast { background: #333; color: white; padding: 12px 20px; border-radius: 50px; text-align: center; margin-bottom: 10px; opacity: 0; transform: translateY(-20px); transition: 0.3s; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        .toast.show { opacity: 1; transform: translateY(0); }
-        .toast.error { background: var(--primary); }
-        .toast.success { background: var(--secondary); color: black; font-weight: bold; }
+        #toast-box { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 6000; }
+        .toast { background: white; color: black; padding: 10px 20px; border-radius: 20px; margin-bottom: 10px; font-weight: bold; }
+
     </style>
 </head>
 <body>
 
 <nav class="navbar">
-    <div class="nav-brand">VWS REcords</div>
-    <button id="navLogoutBtn" class="nav-logout hidden" onclick="logout()">LOGOUT</button>
+    <div class="brand">VWS SYSTEM</div>
+    <div class="nav-info">
+        <span id="navBike">--</span> <span style="margin:0 10px; opacity:0.3">|</span> 
+        <span id="navRole" style="color:var(--secondary)">--</span>
+        <button id="deskProfileBtn" class="hidden" onclick="openProfile()" style="background:none; border:1px solid var(--primary); color:var(--primary); padding:5px 15px; margin-left:15px; cursor:pointer; border-radius:4px;">Profile</button>
+        <button onclick="logout()" style="background:none; border:1px solid #333; color:#fff; padding:5px 10px; margin-left:10px; cursor:pointer;">Exit</button>
+    </div>
 </nav>
 
-<div id="toast-container"></div>
+<div id="toast-box"></div>
 
-<div class="container">
-    
-    <div id="login-view">
-        <div class="login-card">
-            <h2>Welcome</h2>
-            <p style="color:#666; margin-bottom:20px;">Enter Bike Number</p>
-            
-            <input 
-                type="text" 
-                id="bikeInput" 
-                placeholder="TN01AB1234" 
-                oninput="this.value = this.value.toUpperCase()"
-                style="text-align: center; letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">
-            
-            <button class="btn-main" onclick="login()">OPEN DASHBOARD</button>
+<div id="login-view">
+    <div class="login-card">
+        <div style="display:flex; margin-bottom:20px;">
+            <button class="tab-btn active" onclick="switchLoginTab('mechanic')">MECHANIC</button>
+            <button class="tab-btn" onclick="switchLoginTab('owner')">OWNER</button>
         </div>
-    </div>
-
-    <div id="dashboard-view" class="hidden">
-        <div class="dash-info-bar">
-            <div>
-                <span class="dash-label">Active Vehicle</span>
-                <div id="dashTitle" class="dash-bike-number">--</div>
+        <h3 id="loginTitle" style="color:var(--primary);">Mechanic Login</h3>
+        <input type="text" id="bikeInput" placeholder="TN01AA1234" style="text-align:center; font-size:1.2rem; text-transform:uppercase;" oninput="this.value=this.value.toUpperCase()">
+        <div id="ownerAuth" class="hidden" style="margin-top:15px;">
+            <input type="password" id="passInput" placeholder="Passcode" style="text-align:center;">
+            <div style="display:flex; margin-top:10px; background:#fff; border-radius:5px; padding:5px;">
+                <span id="captchaTxt" style="flex:1; color:black; font-family:monospace; font-size:1.2rem; letter-spacing:3px;">ABCD</span>
+                <button onclick="genCaptcha()" style="border:none;background:none;">↻</button>
             </div>
-            <div style="font-size:1.5rem;">🏍️</div>
+            <input type="text" id="captchaInput" placeholder="Enter Captcha" style="text-align:center; margin-top:5px; text-transform:uppercase;">
         </div>
-
-        <div class="action-bar">
-            <div class="action-card ac-service" onclick="openInputModal('Service')">
-                <span style="font-size:2rem;">🛠️</span>
-                <span>Add Service</span>
-            </div>
-            <div class="action-card ac-fuel" onclick="openInputModal('Fuel')">
-                <span style="font-size:2rem;">⛽</span>
-                <span>Add Fuel</span>
-            </div>
-        </div>
-
-        <div class="list-header">History</div>
-        
-        <div id="loader" style="padding:40px; text-align:center;">
-            <div style="border: 3px solid #f3f3f3; border-top: 3px solid var(--primary); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-            <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
-            <p style="color:#888; margin-top:10px;">Syncing...</p>
-        </div>
-        
-        <div id="recordList" class="record-list"></div>
+        <button onclick="login()" class="btn-save" style="background:var(--primary); color:white; margin-top:20px;">ACCESS SYSTEM</button>
     </div>
 </div>
 
-<footer class="footer">
-    <div>VWS REcords &copy; 2025</div>
-    <div style="margin-top:5px; font-size:0.7rem; color:#636e72;">
-        Self Bike Service Recorder System
+<div class="main-layout" id="desktopLayout">
+    
+    <div class="panel-left">
+        <div class="sys-btn" id="btnService" onclick="loadForm('Service')">
+            <div class="sys-icon">🛠️</div>
+            <div>
+                <div style="font-weight:bold; font-size:1.2rem;">ADD SERVICE</div>
+                <div style="color:var(--text-sub); font-size:0.8rem;">Maintenance Entry</div>
+            </div>
+        </div>
+        <div class="sys-btn" id="btnFuel" onclick="loadForm('Fuel')">
+            <div class="sys-icon">⛽</div>
+            <div>
+                <div style="font-weight:bold; font-size:1.2rem;">ADD FUEL</div>
+                <div style="color:var(--text-sub); font-size:0.8rem;">Mileage & Air Check</div>
+            </div>
+        </div>
     </div>
+
+    <div class="panel-mid" id="middlePanel">
+        <div style="text-align:center; margin-top:100px; color:#333;">
+            <h1 style="font-size:4rem; margin:0;">⚙️</h1>
+            <p>Select Action or View Record</p>
+        </div>
+    </div>
+
+    <div class="panel-right" id="rightPanel">
+        <div style="border-bottom:1px solid #333; padding-bottom:10px; margin-bottom:15px; color:var(--text-sub);">RECENT ACTIVITY</div>
+        
+        <div id="loader" class="hidden" style="text-align:center;">
+            <div class="gear-container"><div class="gear gear-outer"></div><div class="gear gear-inner"></div></div>
+            <p style="color:#555; margin-top:5px;">Processing...</p>
+        </div>
+
+        <div id="desktopHistoryList"></div>
+        <div id="desktopLock" class="hidden" style="text-align:center; padding:50px; opacity:0.3;">
+            <h1>🔒</h1><p>Restricted Access</p>
+        </div>
+    </div>
+</div>
+
+<div class="mobile-dash hidden" id="mobileLayout">
+    <div style="text-align:center; margin-top:50px;">
+        <h1 style="color:var(--primary);">VWS MOBILE</h1>
+        <p>Use the bottom menu to add records.</p>
+        <div id="mobileLockMsg" class="hidden" style="margin-top:20px; color:#555;">Mechanic Login Active</div>
+        <div id="mobLoader" class="hidden" style="text-align:center;">
+            <div class="gear-container"><div class="gear gear-outer"></div><div class="gear gear-inner"></div></div>
+        </div>
+        <div id="mobileHistoryList" style="margin-top:20px; text-align:left;"></div>
+    </div>
+</div>
+
+<div class="bottom-nav hidden" id="bottomNav">
+    <button class="nav-item" onclick="openMobileModal('Service')"><span>🛠️</span>Service</button>
+    <button class="nav-item" onclick="openMobileModal('Fuel')"><span>⛽</span>Fuel</button>
+    <button class="nav-item hidden" id="mobProfileBtn" onclick="openProfile()"><span>👤</span>Profile</button>
+</div>
+
+<div class="modal-overlay" id="universalModal">
+    <div class="modal-sheet">
+        <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+            <h2 id="univModalTitle" style="margin:0; color:var(--primary);">Entry</h2>
+            <button onclick="closeModal()" style="background:none; border:none; color:white; font-size:1.5rem;">✕</button>
+        </div>
+        <div id="univModalContent"></div>
+    </div>
+</div>
+
+<footer class="system-footer">
+    VWS Records System v2.0 • Desktop Environment
 </footer>
 
-<div class="modal-overlay" id="inputModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="modal-title" id="inputModalTitle">New Entry</span>
-            <button class="close-btn" onclick="closeModal('inputModal')">✕</button>
-        </div>
-
-        <input type="hidden" id="entryType">
-
-        <label>Date</label>
-        <input type="date" id="inpDate">
-        
-        <label>Current Odometer (km)</label>
-        <input type="number" id="inpOdm" placeholder="e.g. 54000">
-
-        <div id="field-service" class="hidden">
-            <label>Service Description</label>
-            <input type="text" id="inpDesc" placeholder="e.g. Oil Change, Filter replacement">
-            
-            <div style="background: #f9f9f9; padding: 15px; border-radius: 10px; margin-top: 15px; border: 1px solid #eee;">
-                <span style="color:var(--primary); font-weight:bold; font-size:0.9rem;">Mechanic & Shop Info</span>
-                
-                <input type="text" id="inpMechName" placeholder="Mechanic Name" style="margin-top:10px;">
-                <input type="text" id="inpShopName" placeholder="Shop Name">
-                <input type="number" id="inpMechPhone" placeholder="Phone Number">
-            </div>
-        </div>
-
-        <div id="field-fuel" class="hidden">
-            <div style="display:flex; align-items:center; gap:10px; margin:20px 0; padding:15px; background:#fff8e1; border-radius:12px;">
-                <input type="checkbox" id="inpAir" style="width:24px; height:24px; margin:0;">
-                <label style="margin:0; color:var(--text-dark);">Air Check Done?</label>
-            </div>
-        </div>
-
-        <label>Total Cost (₹)</label>
-        <input type="number" id="inpCost" placeholder="0.00">
-
-        <button class="btn-main" onclick="submitForm()">SAVE RECORD</button>
-    </div>
-</div>
-
-<div class="modal-overlay" id="viewModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="modal-title">Details</span>
-            <button class="close-btn" onclick="closeModal('viewModal')">✕</button>
-        </div>
-        <div id="viewContent"></div>
-        <button class="btn-main" style="background:#eee; color:#333; margin-top:30px;" onclick="closeModal('viewModal')">CLOSE</button>
-    </div>
-</div>
-
 <script>
-    // ******************************************************
-    // PASTE YOUR GOOGLE SCRIPT URL INSIDE THE QUOTES BELOW
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPv01sgxQxryXunrnr2Go7FGQjitar6AcCzlkbEBOn-UE88bEWi1sh8xR1Pr8xC24/exec'; 
-    // ******************************************************
-    
-    const SEP = '|||'; // Separator for packed mechanic data
-    let currentBike = "";
-    let globalData = []; 
+    // *************************
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPv01sgxQxryXunrnr2Go7FGQjitar6AcCzlkbEBOn-UE88bEWi1sh8xR1Pr8xC24/exec'; // PASTE URL
+    // *************************
 
-    // --- AUTO LOGIN & QR CODE HANDLER ---
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const bikeParam = urlParams.get('bike');
-        const actionParam = urlParams.get('action');
+    const SEP = '|||';
+    let currentBike = "", isOwner = false, loginTab = 'mechanic', captchaVal = "";
+    let globalData = [];
 
-        if (bikeParam) {
-            // Auto-fill and Login
-            document.getElementById('bikeInput').value = bikeParam;
-            login();
+    window.onload = () => { genCaptcha(); };
 
-            // Auto-open Popup if requested
-            if (actionParam === 'service') {
-                setTimeout(() => openInputModal('Service'), 800);
-            }
-            if (actionParam === 'fuel') {
-                setTimeout(() => openInputModal('Fuel'), 800);
-            }
+    // --- LOGIN ---
+    function switchLoginTab(mode) {
+        loginTab = mode;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        if(mode === 'mechanic') {
+            document.getElementById('ownerAuth').classList.add('hidden');
+            document.getElementById('loginTitle').innerText = "Mechanic Login";
+        } else {
+            document.getElementById('ownerAuth').classList.remove('hidden');
+            document.getElementById('loginTitle').innerText = "Owner Login";
+            genCaptcha();
         }
-    };
+    }
 
-    // --- UI VIEW SWITCHING ---
+    function genCaptcha() {
+        captchaVal = Math.random().toString(36).substring(2, 6).toUpperCase();
+        document.getElementById('captchaTxt').innerText = captchaVal;
+    }
+
     function login() {
-        const input = document.getElementById('bikeInput').value.trim();
-        if(!input) return showToast("Enter Bike Number", "error");
-        
-        currentBike = input.toUpperCase().replace(/\s/g, '');
-        
+        const bike = document.getElementById('bikeInput').value.trim().toUpperCase().replace(/\s/g,'');
+        if(bike.length < 4) return toast("Invalid Bike No");
+
+        if(loginTab === 'owner') {
+            const pass = document.getElementById('passInput').value;
+            const cap = document.getElementById('captchaInput').value.toUpperCase();
+            if(cap !== captchaVal) { genCaptcha(); return toast("Wrong Captcha"); }
+            if(pass !== bike.slice(-4)) return toast("Wrong Passcode");
+            isOwner = true;
+        } else { isOwner = false; }
+
+        currentBike = bike;
+        initInterface();
+    }
+
+    function initInterface() {
         document.getElementById('login-view').classList.add('hidden');
-        document.getElementById('dashboard-view').classList.remove('hidden');
-        document.getElementById('dashTitle').innerText = currentBike;
-        document.getElementById('navLogoutBtn').classList.remove('hidden');
-        
-        fetchRecords();
-    }
+        document.getElementById('navBike').innerText = currentBike;
+        document.getElementById('navRole').innerText = isOwner ? "OWNER" : "MECHANIC";
 
-    function logout() { 
-        // Clear params to prevent auto-relogin loops
-        window.history.pushState({}, document.title, window.location.pathname);
-        location.reload(); 
-    }
-
-    // --- DATA SYNCING ---
-    function fetchRecords() {
-        document.getElementById('loader').classList.remove('hidden');
-        document.getElementById('recordList').innerHTML = "";
-
-        fetch(`${SCRIPT_URL}?bikeNumber=${currentBike}&t=${Date.now()}`)
-        .then(res => res.json())
-        .then(data => {
-            globalData = data.reverse(); 
-            renderList();
-            document.getElementById('loader').classList.add('hidden');
-        })
-        .catch(e => {
-            document.getElementById('loader').innerHTML = "<p style='color:red'>Offline / Network Error</p>";
-            showToast("Network Error", "error");
-        });
-    }
-
-    function renderList() {
-        const list = document.getElementById('recordList');
-        if(globalData.length === 0) {
-            list.innerHTML = "<div style='text-align:center; padding:40px; color:#aaa;'>No records found.<br>Add one above!</div>";
-            return;
+        // Desktop
+        if(isOwner) {
+            document.getElementById('deskProfileBtn').classList.remove('hidden');
+            document.getElementById('desktopLock').classList.add('hidden');
+            loadHistory('desktopHistoryList');
+        } else {
+            document.getElementById('deskProfileBtn').classList.add('hidden');
+            document.getElementById('desktopLock').classList.remove('hidden');
         }
 
-        globalData.forEach((row, index) => {
-            const type = row[0]; 
-            const color = type === 'Service' ? 'var(--primary)' : '#B8860B';
-            const bgColor = type === 'Service' ? 'rgba(139, 0, 0, 0.1)' : 'rgba(218, 165, 32, 0.1)';
-            
-            let dateStr = row[1];
-            try { dateStr = new Date(row[1]).toLocaleDateString(); } catch(e){}
-
-            // LIST SUMMARY (Unpack if needed)
-            let summary = "";
-            if(type === 'Service') {
-                const raw = row[3] || "";
-                summary = raw.includes(SEP) ? raw.split(SEP)[0] : raw;
+        // Mobile
+        if(window.innerWidth <= 1024) {
+            document.getElementById('mobileLayout').classList.remove('hidden');
+            document.getElementById('bottomNav').classList.remove('hidden');
+            if(isOwner) {
+                document.getElementById('mobProfileBtn').classList.remove('hidden');
+                loadHistory('mobileHistoryList');
             } else {
-                summary = `ODM: ${row[2]} km`;
+                document.getElementById('mobileLockMsg').classList.remove('hidden');
             }
+        }
+    }
 
-            const item = document.createElement('div');
-            item.className = 'record-item';
-            item.style.borderLeftColor = color;
-            item.onclick = function() { openViewModal(index); };
-            
-            item.innerHTML = `
-                <div class="rec-info">
-                    <span class="rec-tag" style="color:${color}; background:${bgColor}">${type}</span>
-                    <span class="rec-main-text">${summary}</span>
-                    <span class="rec-date">${dateStr}</span>
+    function logout() { location.reload(); }
+
+    // --- FORMS ---
+    function getFormHTML(type) {
+        return `
+            <div class="form-container">
+                <h2 style="color:${type==='Service'?'var(--primary)':'var(--secondary)'}">${type} Entry</h2>
+                <input type="hidden" id="activeType" value="${type}">
+                <div class="input-group"><label>Date</label><input type="date" id="fDate" value="${new Date().toISOString().split('T')[0]}"></div>
+                <div class="input-group"><label>Odometer</label><input type="number" id="fOdm" placeholder="KM"></div>
+                ${type === 'Service' ? `
+                <div class="input-group"><label>Description</label><textarea id="fDesc" rows="3"></textarea></div>
+                <div class="input-group"><label>Mechanic Info</label><input type="text" id="fMech" placeholder="Name - Shop"></div>
+                ` : `
+                <div style="padding:15px; background:#222; margin-bottom:20px; border-radius:8px;">
+                     <input type="checkbox" id="fAir" style="width:auto;"> <label style="display:inline;">Air Checked</label>
                 </div>
-                <div class="rec-cost" style="color:${color}">₹${row[4]}</div>
-            `;
-            list.appendChild(item);
-        });
+                `}
+                <div class="input-group"><label>Cost (₹)</label><input type="number" id="fCost"></div>
+                <button class="btn-save" onclick="saveData()">SAVE RECORD</button>
+            </div>
+        `;
     }
 
-    // --- SUBMIT LOGIC ---
-    function submitForm() {
-        const type = document.getElementById('entryType').value;
-        const payload = {
-            bikeNumber: currentBike,
-            type: type,
-            date: document.getElementById('inpDate').value,
-            odometer: document.getElementById('inpOdm').value,
-            cost: document.getElementById('inpCost').value
-        };
-
-        if(!payload.date || !payload.odometer || !payload.cost) return showToast("Fill all fields", "error");
-
-        if(type === 'Service') {
-            const desc = document.getElementById('inpDesc').value || "General Service";
-            const mech = document.getElementById('inpMechName').value || "";
-            const shop = document.getElementById('inpShopName').value || "";
-            const phone = document.getElementById('inpMechPhone').value || "";
-            
-            // Pack Data into one string
-            payload.details = `${desc}${SEP}${mech}${SEP}${shop}${SEP}${phone}`;
-        } else {
-            payload.airCheck = document.getElementById('inpAir').checked ? "Checked" : "No";
-        }
-
-        closeModal('inputModal');
-        showToast("Saving...", "success");
-        document.getElementById('loader').classList.remove('hidden');
-
-        fetch(SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(payload)
-        }).then(() => {
-            setTimeout(() => {
-                showToast("Saved!", "success");
-                fetchRecords();
-            }, 1500);
-        }).catch(() => showToast("Save Failed", "error"));
+    function loadForm(type) {
+        document.getElementById('btnService').classList.remove('active');
+        document.getElementById('btnFuel').classList.remove('active');
+        document.getElementById('btn'+type).classList.add('active');
+        document.getElementById('middlePanel').innerHTML = getFormHTML(type);
     }
 
-    // --- MODAL & HELPERS ---
-    function openInputModal(type) {
-        // Reset Inputs
-        document.getElementById('inpDate').valueAsDate = new Date();
-        document.getElementById('inpOdm').value = '';
-        document.getElementById('inpCost').value = '';
-        document.getElementById('inpDesc').value = '';
-        document.getElementById('inpAir').checked = false;
-        document.getElementById('inpMechName').value = '';
-        document.getElementById('inpShopName').value = '';
-        document.getElementById('inpMechPhone').value = '';
-
-        // Configure Modal
-        document.getElementById('entryType').value = type;
-        const title = document.getElementById('inputModalTitle');
-        title.innerText = type === 'Service' ? 'Add Service' : 'Add Fuel';
-        title.style.color = type === 'Service' ? 'var(--primary)' : '#b8860b';
-
-        // Toggle Service/Fuel Fields
-        if(type === 'Service') {
-            document.getElementById('field-service').classList.remove('hidden');
-            document.getElementById('field-fuel').classList.add('hidden');
-        } else {
-            document.getElementById('field-service').classList.add('hidden');
-            document.getElementById('field-fuel').classList.remove('hidden');
-        }
-        document.getElementById('inputModal').classList.add('active');
+    function openMobileModal(type) {
+        document.getElementById('universalModal').classList.add('active');
+        document.getElementById('univModalContent').innerHTML = getFormHTML(type);
+        document.getElementById('univModalTitle').innerText = type;
+        document.querySelector('#univModalContent h2').style.display = 'none';
     }
 
-    function openViewModal(index) {
+    // --- VIEW RECORD (Desktop Middle / Mobile Modal) ---
+    function viewRecord(index) {
         const row = globalData[index];
         const type = row[0];
-        let dateStr = "";
-        try { dateStr = new Date(row[1]).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); } catch(e){}
-        
-        let detailsHtml = "";
-        
-        if (type === 'Service') {
-            const rawDetails = row[3] || "";
-            let desc = rawDetails;
-            let mech = "N/A", shop = "N/A", phone = "";
+        let details = row[3];
+        if(details.includes(SEP)) details = details.split(SEP).join('<br><span style="color:#666">Mech: </span>');
 
-            if(rawDetails.includes(SEP)) {
-                const parts = rawDetails.split(SEP);
-                desc = parts[0];
-                mech = parts[1] || "N/A";
-                shop = parts[2] || "N/A";
-                phone = parts[3] || "";
-            }
-
-            detailsHtml = `
-                <div class="detail-row"><span class="detail-label">Work Done</span> <span class="detail-value">${desc}</span></div>
-                <div class="mech-box">
-                    <div class="mech-title">Mechanic & Shop Info</div>
-                    <div class="detail-row"><span class="detail-label">Mechanic</span> <span class="detail-value">${mech}</span></div>
-                    <div class="detail-row"><span class="detail-label">Shop Name</span> <span class="detail-value">${shop}</span></div>
-                    <div class="detail-row"><span class="detail-label">Phone</span> <span class="detail-value">${phone ? `<a href="tel:${phone}" style="color:var(--primary); text-decoration:none;">📞 ${phone}</a>` : 'N/A'}</span></div>
-                </div>`;
-        } else {
-            const isAir = row[3].toLowerCase().includes('checked') || row[3].toLowerCase().includes('yes') ? "✅ Checked" : "❌ Not Checked";
-            detailsHtml = `<div class="detail-row"><span class="detail-label">Air Status</span> <span class="detail-value" style="color:var(--secondary)">${isAir}</span></div>`;
-        }
-
-        document.getElementById('viewContent').innerHTML = `
-            <div style="text-align:center; margin-bottom:10px;">
-                <span style="background:${type==='Service'?'var(--primary)':'var(--secondary)'}; color:${type==='Service'?'white':'black'}; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.8rem; text-transform:uppercase;">${type}</span>
+        const html = `
+            <div class="view-card" style="border-left:5px solid ${type==='Service'?'var(--primary)':'var(--secondary)'}">
+                <h2 style="color:${type==='Service'?'var(--primary)':'var(--secondary)'}; margin-top:0;">${type} Details</h2>
+                <div class="view-row"><span class="view-label">Date</span><span class="view-val">${new Date(row[1]).toLocaleDateString()}</span></div>
+                <div class="view-row"><span class="view-label">Odometer</span><span class="view-val">${row[2]} km</span></div>
+                <div class="view-row" style="display:block">
+                    <span class="view-label">Details</span><br>
+                    <div class="view-val" style="margin-top:5px; line-height:1.5;">${details}</div>
+                </div>
+                <div class="view-row"><span class="view-label">Cost</span><span class="view-val" style="font-size:1.5rem; color:var(--secondary)">₹${row[4]}</span></div>
+                ${isOwner ? `<button class="btn-save" style="background:#333; color:#ff4757; margin-top:20px;" onclick="deleteRec('${row[5]}')">DELETE RECORD</button>` : ''}
             </div>
-            <div class="big-cost">₹${row[4]}</div>
-            <div class="detail-row"><span class="detail-label">Date</span> <span class="detail-value">${dateStr}</span></div>
-            <div class="detail-row"><span class="detail-label">Odometer</span> <span class="detail-value">${row[2]} km</span></div>
-            ${detailsHtml}
         `;
-        document.getElementById('viewModal').classList.add('active');
+
+        if(window.innerWidth > 1024) {
+            document.getElementById('middlePanel').innerHTML = html;
+        } else {
+            document.getElementById('universalModal').classList.add('active');
+            document.getElementById('univModalContent').innerHTML = html;
+            document.getElementById('univModalTitle').innerText = "Details";
+        }
     }
 
-    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    // --- DATA HANDLING ---
+    function saveData() {
+        const type = document.getElementById('activeType').value;
+        const payload = {
+            action: 'saveRecord', bikeNumber: currentBike, type: type,
+            date: document.getElementById('fDate').value,
+            odometer: document.getElementById('fOdm').value,
+            cost: document.getElementById('fCost').value
+        };
 
-    function showToast(msg, type) {
-        const box = document.createElement('div');
-        box.className = `toast ${type}`;
-        box.innerText = msg;
-        document.getElementById('toast-container').appendChild(box);
-        requestAnimationFrame(() => box.classList.add('show'));
-        setTimeout(() => { box.classList.remove('show'); setTimeout(() => box.remove(), 300); }, 3000);
+        if(!payload.date || !payload.cost) return toast("Data Missing");
+        if(type === 'Service') payload.details = (document.getElementById('fDesc').value || "-") + SEP + (document.getElementById('fMech').value || "-");
+        else payload.airCheck = document.getElementById('fAir').checked ? "Checked" : "No";
+
+        closeModal(); 
+        
+        const loader = window.innerWidth > 1024 ? document.getElementById('loader') : document.getElementById('mobLoader');
+        loader.classList.remove('hidden');
+        if(window.innerWidth > 1024) document.getElementById('middlePanel').innerHTML = "<div style='text-align:center;margin-top:50px;'>Saving...</div>";
+
+        fetch(SCRIPT_URL, {method:'POST', mode:'no-cors', body:JSON.stringify(payload)})
+        .then(() => {
+            toast("Saved!");
+            loader.classList.add('hidden');
+            if(window.innerWidth > 1024) document.getElementById('middlePanel').innerHTML = '<div style="text-align:center;margin-top:100px;color:#333;"><h1>⚡</h1><p>Done.</p></div>';
+            if(isOwner) refreshHistory();
+        });
+    }
+
+    function refreshHistory() {
+        loadHistory('desktopHistoryList');
+        if(window.innerWidth <= 1024) loadHistory('mobileHistoryList');
+    }
+
+    function loadHistory(targetId) {
+        const container = document.getElementById(targetId);
+        container.innerHTML = "";
+        
+        // Cache Buster
+        fetch(`${SCRIPT_URL}?bikeNumber=${currentBike}&reqType=history&t=${new Date().getTime()}`)
+        .then(r => r.json())
+        .then(data => {
+            globalData = data.reverse(); // Store globally for View Mode
+            if(data.length === 0) { container.innerHTML = "<p>No History</p>"; return; }
+            
+            data.forEach((row, index) => {
+                let summary = row[3].split(SEP)[0];
+                const div = document.createElement('div');
+                div.className = `hist-item ${row[0]}`;
+                div.onclick = () => viewRecord(index); // Click to View 40% Panel
+                div.innerHTML = `
+                    <div>
+                        <div style="font-weight:bold; color:white;">${row[0]} <span style="font-size:0.8rem; color:#777;">${new Date(row[1]).toLocaleDateString()}</span></div>
+                        <div style="color:#aaa; font-size:0.9rem;">${summary}</div>
+                    </div>
+                    <div style="font-weight:bold; color:var(--secondary);">₹${row[4]}</div>
+                `;
+                container.appendChild(div);
+            });
+        });
+    }
+
+    function deleteRec(id) {
+        if(!confirm("Delete Permanently?")) return;
+        closeModal();
+        if(window.innerWidth > 1024) document.getElementById('middlePanel').innerHTML = "<div style='text-align:center;margin-top:50px;'>Deleting...</div>";
+        
+        fetch(SCRIPT_URL, {method:'POST', mode:'no-cors', body:JSON.stringify({action:'deleteRecord', bikeNumber:currentBike, id:id})})
+        .then(() => { 
+            toast("Deleted"); 
+            refreshHistory(); 
+            if(window.innerWidth > 1024) document.getElementById('middlePanel').innerHTML = '<div style="text-align:center;margin-top:100px;color:#333;"><h1>⚡</h1><p>Select Action</p></div>';
+        });
+    }
+
+    // --- PROFILE ---
+    function openProfile() {
+        document.getElementById('universalModal').classList.add('active');
+        document.getElementById('univModalContent').innerHTML = `
+            <h3>Owner Profile</h3>
+            <div class="input-group"><label>Name</label><input type="text" id="profName" placeholder="Loading..."></div>
+            <div class="input-group"><label>License</label><input type="text" id="profDL"></div>
+            <div class="input-group"><label>RC No</label><input type="text" id="profRC"></div>
+            <div class="input-group"><label>Insurance</label><input type="text" id="profIns"></div>
+            <button class="btn-save" onclick="saveProfile()">UPDATE PROFILE</button>
+            <a href="https://www.digilocker.gov.in/" target="_blank" class="digilocker-btn" style="display:block;text-align:center;margin-top:10px;color:#2f80ed;text-decoration:none;">Open DigiLocker 🇮🇳</a>
+        `;
+        document.getElementById('univModalTitle').innerText = "Profile";
+
+        fetch(`${SCRIPT_URL}?bikeNumber=${currentBike}&reqType=profile&t=${new Date().getTime()}`)
+        .then(r=>r.json()).then(d=>{
+            if(d.name) {
+                document.getElementById('profName').value = d.name;
+                document.getElementById('profDL').value = d.license;
+                document.getElementById('profRC').value = d.rc;
+                document.getElementById('profIns').value = d.insurance;
+            } else {
+                document.getElementById('profName').placeholder = "Enter Name";
+            }
+        });
+    }
+
+    function saveProfile() {
+        const payload = {
+            action:'saveProfile', bikeNumber:currentBike,
+            name: document.getElementById('profName').value,
+            license: document.getElementById('profDL').value,
+            rc: document.getElementById('profRC').value,
+            insurance: document.getElementById('profIns').value
+        };
+        fetch(SCRIPT_URL, {method:'POST', mode:'no-cors', body:JSON.stringify(payload)})
+        .then(() => { closeModal(); toast("Profile Updated"); });
+    }
+
+    function closeModal() { document.getElementById('universalModal').classList.remove('active'); }
+    function toast(msg) {
+        const d = document.createElement('div'); d.className='toast'; d.innerText=msg;
+        document.getElementById('toast-box').appendChild(d); setTimeout(()=>d.remove(), 2500);
     }
 </script>
 
 </body>
 </html>
-
